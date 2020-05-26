@@ -6,6 +6,12 @@ class CkanBenapHarvester(CKANHarvester):
 
         # Set a default custom field
 
+        print("#"*30)
+        print(package_dict)
+        print("#"*30)
+        print(harvest_object)
+        print("#"*30)
+
         package_dict['remote_harvest'] = True
 
         # Add tags
