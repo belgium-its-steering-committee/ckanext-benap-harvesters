@@ -74,7 +74,7 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points='''
         [ckan.plugins]
-        benap-harvesters=ckanext.benap-harvesters.plugin:BenapHarvesterPlugin
+        benap_harvesters=ckanext.benap-harvesters.plugin:BenapHarvesterPlugin
         benap_ckan_harvester=ckanext.benap-harvesters.harvesters:CkanBenapHarvester
 
     '''
