@@ -102,11 +102,14 @@ class CkanBenapHarvester(CKANHarvester):
                 package_dict['groups'] = validated_groups
 
             log.debug('groups')
-            log.debug(package_dict['groups'] )
+            log.debug(package_dict['groups'])
 
             # Local harvest source organization
             source_dataset = get_action('package_show')(base_context.copy(), {'id': harvest_object.source.id})
             local_org = source_dataset.get('owner_org')
+
+            log.debug('owner_org')
+            log.debug(local_org)
 
             remote_orgs = self.config.get('remote_orgs', None)
 
@@ -148,6 +151,8 @@ class CkanBenapHarvester(CKANHarvester):
                                 log.error('Could not get remote org %s', remote_org)
 
                 package_dict['owner_org'] = validated_org or local_org
+
+            log.debug('Set default groups if needed')
 
             # Set default groups if needed
             default_groups = self.config.get('default_groups', [])
