@@ -101,14 +101,15 @@ class CkanBenapHarvester(CKANHarvester):
 
                 package_dict['groups'] = validated_groups
 
-            log.debug('groups')
-            log.debug(package_dict['groups'])
+            log.debug('Local harvest source organization')
+            log.debug({'id': harvest_object.source.id})
+            log.debug(base_context.copy())
 
             # Local harvest source organization
             source_dataset = get_action('package_show')(base_context.copy(), {'id': harvest_object.source.id})
             local_org = source_dataset.get('owner_org')
 
-            log.debug('owner_org')
+            log.debug('local_org')
             log.debug(local_org)
 
             remote_orgs = self.config.get('remote_orgs', None)
