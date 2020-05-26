@@ -3,12 +3,6 @@ from setuptools import setup, find_packages  # Always prefer setuptools over dis
 from codecs import open  # To use a consistent encoding
 from os import path
 
-here = path.abspath(path.dirname(__file__))
-
-# Get the long description from the relevant file
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
-    long_description = f.read()
-
 setup(
     name='''ckanext-benap-harvesters''',
 
@@ -18,7 +12,7 @@ setup(
     version='0.1.0',
 
     description='''Harvesters for Belgium's multimodal transport service catalogue''',
-    long_description=long_description,
+    long_description='''Harvesters for Belgium's multimodal transport service catalogue''',
 
     # The project's main homepage.
     url='https://github.com/belgium-its-steering-committee/ckanext-benap-harvesters/',
