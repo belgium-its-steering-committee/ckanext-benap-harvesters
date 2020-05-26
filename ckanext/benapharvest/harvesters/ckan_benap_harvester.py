@@ -1,5 +1,8 @@
 from ckanext.harvest.harvesters.ckanharvester import CKANHarvester
 
+import logging
+log = logging.getLogger(__name__)
+
 
 class CkanBenapHarvester(CKANHarvester):
 
@@ -12,13 +15,11 @@ class CkanBenapHarvester(CKANHarvester):
         }
 
     def modify_package_dict(self, package_dict, harvest_object):
-        # Set a default custom field
 
-        print("#" * 30)
-        print(package_dict)
-        print("#" * 30)
-        print(harvest_object)
-        print("#" * 30)
+        log.debug("package_dict")
+        log.debug(package_dict)
+        log.debug("harvest_object")
+        log.debug(harvest_object)
 
         package_dict['remote_harvest'] = True
 
