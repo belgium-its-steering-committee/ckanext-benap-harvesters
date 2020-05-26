@@ -4,7 +4,7 @@ from codecs import open  # To use a consistent encoding
 from os import path
 
 setup(
-    name='''ckanext-benap-harvesters''',
+    name='''ckanext-benapharvest''',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
@@ -74,8 +74,8 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points='''
         [ckan.plugins]
-        benap_harvesters=ckanext.benap-harvesters.plugin:BenapHarvesterPlugin
-        benap_ckan_harvester=ckanext.benap-harvesters.harvesters:CkanBenapHarvester
+        benap_harvesters=ckanext.benapharvest.plugin:BenapHarvesterPlugin
+        benap_ckan_harvester=ckanext.benapharvest.harvesters:CkanBenapHarvester
 
     '''
 
