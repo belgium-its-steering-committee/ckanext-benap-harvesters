@@ -25,11 +25,6 @@ class CkanBenapHarvester(CKANHarvester):
         base_context = {'model': model, 'session': model.Session,
                         'user': self._get_user_name()}
 
-        log.debug("base_context")
-        log.debug(base_context)
-        log.debug('harvest_object')
-        log.debug(harvest_object)
-
         if not harvest_object:
             log.error('No harvest object received')
             return False
@@ -43,8 +38,6 @@ class CkanBenapHarvester(CKANHarvester):
         self._set_config(harvest_object.job.source.config)
 
         try:
-            log.debug('harvest_object.content')
-            log.debug(harvest_object.content)
             package_dict = json.loads(harvest_object.content)
             log.debug('package_dict')
             log.debug(package_dict)
@@ -108,6 +101,9 @@ class CkanBenapHarvester(CKANHarvester):
 
                 package_dict['groups'] = validated_groups
 
+            log.debug('groups')
+            log.debug(package_dict['groups'] )
+
             # Local harvest source organization
             source_dataset = get_action('package_show')(base_context.copy(), {'id': harvest_object.source.id})
             local_org = source_dataset.get('owner_org')
@@ -116,6 +112,7 @@ class CkanBenapHarvester(CKANHarvester):
 
             if remote_orgs not in ('only_local', 'create'):
                 # Assign dataset to the source organization
+                log.debug('Assign dataset to the source organization')
                 package_dict['owner_org'] = local_org
             else:
                 if 'owner_org' not in package_dict:
@@ -192,6 +189,13 @@ class CkanBenapHarvester(CKANHarvester):
 
                     package_dict['extras'].append({'key': key, 'value': value})
 
+            log.debug('default_extras')
+            log.debug(default_extras)
+            log.debug(package_dict['extras'])
+
+            log.debug('resource')
+            log.debug(package_dict.get('resources', []))
+
             for resource in package_dict.get('resources', []):
                 # Clear remote url_type for resources (eg datastore, upload) as
                 # we are only creating normal resources with links to the
@@ -225,7 +229,7 @@ class CkanBenapHarvester(CKANHarvester):
         }
 
     def modify_package_dict(self, package_dict, harvest_object):
-
+        log.debug("---modify_package_dict---")
         log.debug("package_dict")
         log.debug(package_dict)
         log.debug("harvest_object")
