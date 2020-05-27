@@ -106,6 +106,8 @@ class CkanBenapHarvester(CKANHarvester):
 
             log.debug('package_show')
             log.debug(get_action('package_show'))
+            log.debug(get_action('package_show')(base_context.copy(), {'id': harvest_object.source.id}))
+            log.debug('e t p s')
 
             # Local harvest source organization
             source_dataset = get_action('package_show')(base_context.copy(), {'id': harvest_object.source.id})
