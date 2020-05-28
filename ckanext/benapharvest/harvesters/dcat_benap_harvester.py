@@ -42,36 +42,39 @@ class DcatBenapHarvester(DCATRDFHarvester):
 
         # Temporal start
         if 'Temporal start' in extras_keys:
-            new_extras['Temporal start'] = self._find_by_key(extras, 'Temporal start')
+            self._add_to_dict_list(new_extras, 'Temporal start', self._find_by_key(extras, 'Temporal start'))
         elif 'modified' in extras_keys:
-            log.debug(self._find_by_key(extras, 'modified'))
-            new_extras['Temporal start'] = self._find_by_key(extras, 'modified')
+            self._add_to_dict_list(new_extras, 'Temporal start', self._find_by_key(extras, 'modified'))
         else:
             now = datetime.now()
-            new_extras['Temporal start'] = now.strftime("%Y-%m-%dT%H:%M:%S")
+            self._add_to_dict_list(new_extras, 'Temporal start', now.strftime("%Y-%m-%dT%H:%M:%S"))
 
         # Regions covered
         if 'Regions covered' in extras_keys:
-            new_extras['Regions covered'] = self._find_by_key(extras, 'Regions covered')
+            self._add_to_dict_list(new_extras, 'Regions covered', self._find_by_key(extras, 'Regions covered'))
         else:
-            new_extras['Regions covered'] = ['http://publications.europa.eu/resource/authority/nuts/code/BE3']
+            self._add_to_dict_list(new_extras, 'Regions covered',
+                                   ['http://publications.europa.eu/resource/authority/nuts/code/BE3'])
 
         # Countries covered
         if 'Countries covered' in extras_keys:
-            new_extras['Countries covered'] = self._find_by_key(extras, 'Countries covered')
+            self._add_to_dict_list(new_extras, 'Countries covered', self._find_by_key(extras, 'Countries covered'))
         else:
-            new_extras['Countries covered'] = ['http://publications.europa.eu/resource/authority/country/BEL']
+            self._add_to_dict_list(new_extras, 'Countries covered',
+                                   ['http://publications.europa.eu/resource/authority/country/BEL'])
 
         # Language
         if 'Language' in extras_keys or 'language' in extras_keys:
-            new_extras['Language'] = []
+            new_languages = []
             languages = self._find_by_key(extras, 'language')
             if languages is None:
                 languages = self._find_by_key(extras, 'Language')
             for language in languages:
-                new_extras['Language'].append(self._format_language(language))
+                new_languages.append(self._format_language(language))
+            self._add_to_dict_list(new_extras, 'Language', new_languages)
         else:
-            new_extras['Language'] = ['http://publications.europa.eu/resource/authority/country/BEL']
+            self._add_to_dict_list(new_extras, 'Language',
+                                   ['http://publications.europa.eu/resource/authority/country/BEL'])
 
         log.debug(json.dumps(new_extras, indent=2))
         return new_extras
@@ -87,3 +90,10 @@ class DcatBenapHarvester(DCATRDFHarvester):
     @staticmethod
     def _find_by_key(dict_list, key):
         return next(iter([val['value'] for val in dict_list if val['key'] == key]), None)
+
+    @staticmethod
+    def _add_to_dict_list(dict_list, key, value):
+        dict_list.append({
+            "key":key,
+            "value":value
+        })
