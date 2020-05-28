@@ -16,6 +16,11 @@ log = logging.getLogger(__name__)
 
 class DcatBenapHarvester(DCATHarvester):
 
+    def __init__(self):
+        s = super(DcatBenapHarvester, self)
+        log.debug(self)
+        log.debug(s)
+
     def info(self):
         return {
             'name': 'benap_dcat',
