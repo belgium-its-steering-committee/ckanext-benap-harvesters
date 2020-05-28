@@ -42,31 +42,31 @@ class DcatBenapHarvester(DCATRDFHarvester):
 
         # Temporal start
         if 'Temporal start' in extras_keys:
-            new_extras['Temporal start'] = next([val['value'] for val in extras if val['key'] == 'Temporal start'])
+            new_extras['Temporal start'] = self._find_by_key(extras, 'Temporal start')
         elif 'modified' in extras_keys:
-            new_extras['Temporal start'] = next([val['value'] for val in extras if val['key'] == 'modified'])
+            new_extras['Temporal start'] = self._find_by_key(extras, 'modified')
         else:
             now = datetime.now()
             new_extras['Temporal start'] = now.strftime("%Y-%m-%dT%H:%M:%S")
 
         # Regions covered
         if 'Regions covered' in extras_keys:
-            new_extras['Regions covered'] = next([val['value'] for val in extras if val['key'] == 'Regions covered'])
+            new_extras['Regions covered'] = self._find_by_key(extras, 'Regions covered')
         else:
             new_extras['Regions covered'] = ['http://publications.europa.eu/resource/authority/nuts/code/BE3']
 
         # Countries covered
         if 'Countries covered' in extras_keys:
-            new_extras['Countries covered'] = next([val['value'] for val in extras if val['key'] == 'Countries covered'])
+            new_extras['Countries covered'] = self._find_by_key(extras, 'Countries covered')
         else:
             new_extras['Countries covered'] = ['http://publications.europa.eu/resource/authority/country/BEL']
 
         # Language
         if 'Language' in extras_keys or 'language' in extras_keys:
             new_extras['Language'] = []
-            languages = extras.get(next([val['value'] for val in extras if val['key'] == 'language']),
-                                   extras.get(next([val['value'] for val in extras if val['key'] == 'Language']),
-                                              []))
+            languages = self._find_by_key(extras, 'language')
+            if languages is None:
+                languages = self._find_by_key(extras, 'Language')
             for language in languages:
                 new_extras['Language'].append(self._format_language(language))
         else:
@@ -82,3 +82,7 @@ class DcatBenapHarvester(DCATRDFHarvester):
         if language == 'http://lexvo.org/id/iso639-3/nld':
             return 'http://publications.europa.eu/resource/authority/language/NLD'
         return input
+
+    @staticmethod
+    def _find_by_key(dict_list, key):
+        return next(iter([val['value'] for val in dict_list if val['key'] == key]), None)
