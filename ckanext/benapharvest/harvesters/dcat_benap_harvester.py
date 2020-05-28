@@ -1,3 +1,4 @@
+import json
 import logging
 
 from ckanext.dcat.harvesters.rdf import DCATRDFHarvester
@@ -18,9 +19,7 @@ class DcatBenapHarvester(DCATRDFHarvester):
     def modify_package_dict(self, package_dict, dcat_dict, harvest_object):
         log.debug("---modify_package_dict---")
         log.debug("package_dict")
-        log.debug(package_dict)
-        log.debug("harvest_object")
-        log.debug(harvest_object)
+        log.debug(json.dumps(package_dict, indent=2))
         log.debug("dcat_dict")
         log.debug(dcat_dict)
 
