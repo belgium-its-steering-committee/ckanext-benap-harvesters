@@ -15,13 +15,6 @@ class DcatBenapHarvester(DCATRDFHarvester):
             'form_config_interface': 'Text'
         }
 
-    def gather_stage(self, harvest_job):
-        log.debug(harvest_job)
-        log.debug(self)
-        log.debug(super(DcatBenapHarvester, self))
-        log.debug(super(DcatBenapHarvester, self).gather_stage)
-        super(DcatBenapHarvester, self).gather_stage(harvest_job)
-
     def modify_package_dict(self, package_dict, dcat_dict, harvest_object):
         log.debug("---modify_package_dict---")
         log.debug("package_dict")
