@@ -22,11 +22,8 @@ class DcatBenapHarvester(DCATRDFHarvester):
         log.debug("---modify_package_dict---")
         log.debug("package_dict")
         log.debug(json.dumps(package_dict, indent=2))
-        log.debug("dcat_dict")
-        log.debug(dcat_dict)
 
-        log.debug('harvest_object')
-        log.debug(harvest_object)
+        log.debug('config')
         log.debug(harvest_object.source.config)
 
         package_dict['extras'] = self._process_extras(package_dict['extras'])
@@ -39,33 +36,37 @@ class DcatBenapHarvester(DCATRDFHarvester):
         return package_dict
 
     def _process_extras(self, extras):
-        new_extras = {}
+        extras_keys = [val['key'] for val in extras]
+
+        new_extras = []
 
         # Temporal start
-        if 'Temporal start' in extras:
-            new_extras['Temporal start'] = extras['Temporal start']
-        elif 'modified' in extras:
-            new_extras['Temporal start'] = extras['modified']
+        if 'Temporal start' in extras_keys:
+            new_extras['Temporal start'] = next([val['value'] for val in extras if val['key'] == 'Temporal start'])
+        elif 'modified' in extras_keys:
+            new_extras['Temporal start'] = next([val['value'] for val in extras if val['key'] == 'modified'])
         else:
             now = datetime.now()
             new_extras['Temporal start'] = now.strftime("%Y-%m-%dT%H:%M:%S")
 
         # Regions covered
-        if 'Regions covered' in extras:
-            new_extras['Regions covered'] = extras['Regions covered']
+        if 'Regions covered' in extras_keys:
+            new_extras['Regions covered'] = next([val['value'] for val in extras if val['key'] == 'Regions covered'])
         else:
             new_extras['Regions covered'] = ['http://publications.europa.eu/resource/authority/nuts/code/BE3']
 
         # Countries covered
-        if 'Countries covered' in extras:
-            new_extras['Countries covered'] = extras['Countries covered']
+        if 'Countries covered' in extras_keys:
+            new_extras['Countries covered'] = next([val['value'] for val in extras if val['key'] == 'Countries covered'])
         else:
             new_extras['Countries covered'] = ['http://publications.europa.eu/resource/authority/country/BEL']
 
         # Language
-        if 'Language' in extras:
+        if 'Language' in extras_keys or 'language' in extras_keys:
             new_extras['Language'] = []
-            languages = extras.get('Language', extras.get('language', []))
+            languages = extras.get(next([val['value'] for val in extras if val['key'] == 'language']),
+                                   extras.get(next([val['value'] for val in extras if val['key'] == 'Language']),
+                                              []))
             for language in languages:
                 new_extras['Language'].append(self._format_language(language))
         else:
