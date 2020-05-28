@@ -68,7 +68,7 @@ class DcatBenapHarvester(DCATRDFHarvester):
             new_languages = []
             languages = self._find_by_key(extras, 'language')
             if languages is None:
-                languages = self._find_by_key(extras, 'Language')
+                languages = json.loads(self._find_by_key(extras, 'Language'))
             for language in languages:
                 new_languages.append(self._format_language(language))
             self._add_to_dict_list(new_extras, 'Language', new_languages)
