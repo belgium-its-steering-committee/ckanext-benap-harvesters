@@ -66,7 +66,7 @@ class DcatBenapHarvester(DCATRDFHarvester):
         # Language
         if 'Language' in extras_keys or 'language' in extras_keys:
             new_languages = []
-            languages = self._find_by_key(extras, 'language')
+            languages = json.loads(self._find_by_key(extras, 'language'))
             if languages is None:
                 languages = json.loads(self._find_by_key(extras, 'Language'))
             for language in languages:
