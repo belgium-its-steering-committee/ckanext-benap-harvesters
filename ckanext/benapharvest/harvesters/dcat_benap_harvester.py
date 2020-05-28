@@ -44,6 +44,7 @@ class DcatBenapHarvester(DCATRDFHarvester):
         if 'Temporal start' in extras_keys:
             new_extras['Temporal start'] = self._find_by_key(extras, 'Temporal start')
         elif 'modified' in extras_keys:
+            log.debug(self._find_by_key(extras, 'modified'))
             new_extras['Temporal start'] = self._find_by_key(extras, 'modified')
         else:
             now = datetime.now()
