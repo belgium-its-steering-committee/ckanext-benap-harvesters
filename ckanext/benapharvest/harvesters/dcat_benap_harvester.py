@@ -1,11 +1,11 @@
 import logging
 
-from ckanext.dcat.harvesters.base import DCATHarvester
+from ckanext.dcat.harvesters.rdf import DCATRDFHarvester
 
 log = logging.getLogger(__name__)
 
 
-class DcatBenapHarvester(DCATHarvester):
+class DcatBenapHarvester(DCATRDFHarvester):
 
     def info(self):
         return {
