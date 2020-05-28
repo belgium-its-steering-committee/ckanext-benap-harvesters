@@ -8,17 +8,21 @@ import rdflib
 from ckan import plugins as p
 from ckan import model
 
-
-from ckanext.harvest.harvesters import HarvesterBase
-from ckanext.harvest.model import HarvestObject
-
-from ckanext.dcat.interfaces import IDCATRDFHarvester
+from ckanext.dcat.harvesters.base import DCATHarvester
 
 
 log = logging.getLogger(__name__)
 
 
-class DcatBenapHarvester(HarvesterBase):
+class DcatBenapHarvester(DCATHarvester):
+
+    def info(self):
+        return {
+            'name': 'benap_dcat',
+            'title': 'BENAP DCAT',
+            'description': 'Harvests remote DCAT metadata for use with transportdata.be',
+            'form_config_interface': 'Text'
+        }
 
     def modify_package_dict(self, package_dict, harvest_object):
         log.debug("---modify_package_dict---")
