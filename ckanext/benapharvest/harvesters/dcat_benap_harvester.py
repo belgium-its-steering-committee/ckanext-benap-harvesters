@@ -33,6 +33,8 @@ class DcatBenapHarvester(DCATRDFHarvester):
         # Add tags
         package_dict['tags'].append({'name': 'harvested'})
 
+        log.debug("final package_dict")
+        log.debug(json.dumps(package_dict, indent=2))
         return package_dict
 
     def _process_extras(self, extras):
@@ -81,8 +83,6 @@ class DcatBenapHarvester(DCATRDFHarvester):
 
     @staticmethod
     def _format_language(language):
-        log.debug(language)
-        log.debug(language == 'http://lexvo.org/id/iso639-3/nld')
         if language == 'http://lexvo.org/id/iso639-3/nld':
             return 'http://publications.europa.eu/resource/authority/language/NLD'
         return input
