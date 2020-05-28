@@ -24,12 +24,14 @@ class DcatBenapHarvester(DCATHarvester):
             'form_config_interface': 'Text'
         }
 
-    def modify_package_dict(self, package_dict, harvest_object):
+    def modify_package_dict(self, package_dict, dcat_dict, harvest_object):
         log.debug("---modify_package_dict---")
         log.debug("package_dict")
         log.debug(package_dict)
         log.debug("harvest_object")
         log.debug(harvest_object)
+        log.debug("dcat_dict")
+        log.debug(dcat_dict)
 
         package_dict['remote_harvest'] = True
 
