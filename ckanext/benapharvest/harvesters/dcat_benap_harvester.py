@@ -1,15 +1,6 @@
-import os
 import logging
 
-import six
-import requests
-import rdflib
-
-from ckan import plugins as p
-from ckan import model
-
 from ckanext.dcat.harvesters.base import DCATHarvester
-
 
 log = logging.getLogger(__name__)
 
@@ -17,9 +8,7 @@ log = logging.getLogger(__name__)
 class DcatBenapHarvester(DCATHarvester):
 
     def __init__(self):
-        s = super(DcatBenapHarvester, self)
         log.debug(self)
-        log.debug(s)
 
     def info(self):
         return {
