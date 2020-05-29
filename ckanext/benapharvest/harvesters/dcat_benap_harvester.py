@@ -39,7 +39,7 @@ class DcatBenapHarvester(DCATRDFHarvester):
 
         # Geographic location
         package_dict['countries_covered'] = ['http://publications.europa.eu/resource/authority/country/BEL']
-        package_dict['regions_covered'] = ['http://data.europa.eu/nuts/code/BE3']
+        package_dict['regions_covered'] = ['http://data.europa.eu/nuts/code/BE2']
 
         # Frequency
         package_dict['frequency'] = 'http://publications.europa.eu/resource/authority/frequency/ANNUAL'
@@ -48,7 +48,7 @@ class DcatBenapHarvester(DCATRDFHarvester):
         if 'Language' in extras_keys or 'language' in extras_keys:
             new_languages = []
             languages = json.loads(self._find_by_key(package_dict['extras'], 'language'))
-            if languages is None:
+            if languages is '':
                 languages = json.loads(self._find_by_key(package_dict['extras'], 'Language'))
             for language in languages:
                 new_languages.append(self._format_language(language))
@@ -79,6 +79,8 @@ class DcatBenapHarvester(DCATRDFHarvester):
         # Temporal start
         if 'Temporal start' in extras_keys:
             package_dict['temporal_start'] = self._find_by_key(package_dict['extras'], 'Temporal start')
+        elif 'issued' in extras_keys:
+            package_dict['temporal_start'] = self._find_by_key(package_dict['extras'], 'issued')
         elif 'modified' in extras_keys:
             package_dict['temporal_start'] = self._find_by_key(package_dict['extras'], 'modified')
         else:
@@ -90,11 +92,11 @@ class DcatBenapHarvester(DCATRDFHarvester):
         package_dict['p_tel'] = '+32488999999'
         package_dict['publisher_org'] = 'new publisher'
         package_dict['publisher_name'] = 'publisher name'
-        package_dict['publisher_url'] = 'https://www.publisher.com'
+        package_dict['publisher_url'] = self._find_by_key(package_dict['extras'], 'publisher_uri')
         package_dict['publisher_email'] = 'publisher@example.com'
 
         # Contact
-        package_dict['contact_name'] = 'contact point name'
+        package_dict['contact_name'] = self._find_by_key(package_dict['extras'], 'contact_uri')
 
         # Cont_res, value must be one of: Data set; Service
         package_dict['cont_res'] = 'Data set'
@@ -105,11 +107,11 @@ class DcatBenapHarvester(DCATRDFHarvester):
         # Quality assessment
         package_dict['qual_ass'] = {'fr': '', 'de': '', 'nl': '', 'en': ''}
 
-        # remove extra's
-        del package_dict['extras']
-
         # resources
         package_dict['resources'] = self._process_resources(package_dict['resources'])
+
+        # remove extra's
+        del package_dict['extras']
 
         log.debug("final package_dict")
         log.debug(json.dumps(package_dict, indent=2))
@@ -122,8 +124,8 @@ class DcatBenapHarvester(DCATRDFHarvester):
         return input
 
     @staticmethod
-    def _find_by_key(dict_list, key):
-        return next(iter([val['value'] for val in dict_list if val['key'] == key]), None)
+    def _find_by_key(dict_list, key, default_value=''):
+        return next(iter([val['value'] for val in dict_list if val['key'] == key]), default_value)
 
     @staticmethod
     def _add_to_dict_list(dict_list, key, value):
