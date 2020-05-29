@@ -34,7 +34,6 @@ class DcatBenapHarvester(DCATRDFHarvester):
         package_dict['tags'].append({'name': 'harvested'})
 
         package_dict['Countries covered'] = ['http://publications.europa.eu/resource/authority/country/BEL']
-        package_dict[u'Countries covered'] = ['http://publications.europa.eu/resource/authority/country/BEL']
 
         log.debug("final package_dict")
         log.debug(json.dumps(package_dict, indent=2))
@@ -61,11 +60,14 @@ class DcatBenapHarvester(DCATRDFHarvester):
             self._add_to_dict_list(new_extras, 'Regions covered',
                                    ['http://publications.europa.eu/resource/authority/nuts/code/BE3'])
 
+        self._add_to_dict_list(new_extras, 'regions_covered',
+                               ['http://publications.europa.eu/resource/authority/nuts/code/BE3'])
+
         # Countries covered
         if 'Countries covered' in extras_keys:
             self._add_to_dict_list(new_extras, 'Countries covered', self._find_by_key(extras, 'Countries covered'))
         else:
-            self._add_to_dict_list(new_extras, u'Countries covered',
+            self._add_to_dict_list(new_extras, 'Countries covered',
                                    ['http://publications.europa.eu/resource/authority/country/BEL'])
 
         # Language
