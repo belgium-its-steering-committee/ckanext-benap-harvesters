@@ -20,9 +20,7 @@ class DcatBenapHarvester(DCATRDFHarvester):
 
     def modify_package_dict(self, package_dict, dcat_dict, harvest_object):
         log.debug("---modify_package_dict---")
-        log.debug('config')
-        log.debug(harvest_object.source.config)
-        log.debug("-------")
+        config = harvest_object.source.config
 
         extras_keys = [val['key'] for val in package_dict['extras']]
 
@@ -88,12 +86,12 @@ class DcatBenapHarvester(DCATRDFHarvester):
             package_dict['temporal_start'] = now.strftime("%Y-%m-%dT%H:%M:%S")
 
         # Publisher
-        package_dict['p_address'] = 'publisher avenue, 1000 Bruxelles (Belgique)'
-        package_dict['p_tel'] = '+32488999999'
-        package_dict['publisher_org'] = 'new publisher'
-        package_dict['publisher_name'] = 'publisher name'
+        package_dict['p_address'] = config['default_extras']['publisher_address']
+        package_dict['p_tel'] = config['default_extras']['publisher_tel']
+        package_dict['publisher_org'] = config['default_extras']['publisher_org']
+        package_dict['publisher_name'] = config['default_extras']['publisher_name']
         package_dict['publisher_url'] = self._find_by_key(package_dict['extras'], 'publisher_uri')
-        package_dict['publisher_email'] = 'publisher@example.com'
+        package_dict['publisher_email'] = config['default_extras']['publisher_email']
 
         # Contact
         package_dict['contact_name'] = self._find_by_key(package_dict['extras'], 'contact_uri')
