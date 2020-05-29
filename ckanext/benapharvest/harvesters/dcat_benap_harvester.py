@@ -90,6 +90,9 @@ class DcatBenapHarvester(DCATRDFHarvester):
         # remove extra's
         del package_dict['extras']
 
+        # resources
+        package_dict['resources'] = self._process_resources(package_dict['resources'])
+
         log.debug("final package_dict")
         log.debug(json.dumps(package_dict, indent=2))
         return package_dict
@@ -110,3 +113,20 @@ class DcatBenapHarvester(DCATRDFHarvester):
             "key": key,
             "value": value
         })
+
+    def _process_resources(self, resources):
+        new_resources = []
+        for resource in resources:
+            new_resources.append(self._process_resource(resource))
+        return new_resources
+
+    @staticmethod
+    def _process_resource(resource):
+        new_resource = {'name': resource['name'], 'mimetype': resource['mimetype'], 'url': resource['url'],
+                        'description': resource['description'], 'format': resource['format']}
+        new_resource['acc_mod'] = 'Other'
+        new_resource['acc_int'] = 'Other'
+        new_resource['acc_con'] = 'Pull'
+        new_resource['resource_language'] = 'http://publications.europa.eu/resource/authority/language/NLD'
+        return new_resource
+
