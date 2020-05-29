@@ -46,7 +46,6 @@ class DcatBenapHarvester(DCATRDFHarvester):
         package_dict['frequency'] = 'http://publications.europa.eu/resource/authority/frequency/MONTHLY'
 
         # Language
-
         if 'Language' in extras_keys or 'language' in extras_keys:
             new_languages = []
             languages = json.loads(self._find_by_key(package_dict['extras'], 'language'))
@@ -57,6 +56,23 @@ class DcatBenapHarvester(DCATRDFHarvester):
             package_dict['language'] = new_languages
         else:
             package_dict['language'] = ['http://publications.europa.eu/resource/authority/language/NLD']
+
+        # Notes
+        notes_translated = {
+            'fr': '',
+            'de': '',
+            'nl': '',
+            'en': ''
+        }
+        if 'http://publications.europa.eu/resource/authority/language/NLD' in package_dict['language']:
+            notes_translated['nl'] = package_dict['notes']
+        if 'http://publications.europa.eu/resource/authority/language/FRA' in package_dict['language']:
+            notes_translated['fr'] = package_dict['notes']
+        if 'http://publications.europa.eu/resource/authority/language/DEU' in package_dict['language']:
+            notes_translated['de'] = package_dict['notes']
+        if 'http://publications.europa.eu/resource/authority/language/ENG' in package_dict['language']:
+            notes_translated['en'] = package_dict['notes']
+        package_dict['notes_translated'] = notes_translated
 
         # Theme
         package_dict['theme'] = 'http://publications.europa.eu/resource/authority/data-theme/TRAN'
