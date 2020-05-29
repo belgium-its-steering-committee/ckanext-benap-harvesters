@@ -120,13 +120,17 @@ class DcatBenapHarvester(DCATRDFHarvester):
             new_resources.append(self._process_resource(resource))
         return new_resources
 
-    @staticmethod
-    def _process_resource(resource):
+    def _process_resource(self, resource):
         new_resource = {'name': resource['name'], 'mimetype': resource['mimetype'], 'url': resource['url'],
-                        'description': resource['description'], 'format': resource['format']}
+                        'description': resource['description']}
         new_resource['acc_mod'] = 'Other'
         new_resource['acc_int'] = 'Other'
         new_resource['acc_con'] = 'Pull'
         new_resource['resource_language'] = 'http://publications.europa.eu/resource/authority/language/NLD'
+        new_resource['format'] = self._map_format(resource['format'])
         return new_resource
 
+    @staticmethod
+    def _map_format(resource_format):
+        return resource_format if resource_format in ['XML', 'JSON', 'CSV', 'ASN.1 encoding rules',
+                                                      'Protocol buffers'] else 'Other'
