@@ -86,6 +86,9 @@ class DcatBenapHarvester(DCATRDFHarvester):
             package_dict['temporal_start'] = now.strftime("%Y-%m-%dT%H:%M:%S")
 
         # Publisher
+        log.debug("---")
+        log.debug(config['default_extras'])
+        log.debug("---")
         package_dict['p_address'] = config['default_extras']['publisher_address']
         package_dict['p_tel'] = config['default_extras']['publisher_tel']
         package_dict['publisher_org'] = config['default_extras']['publisher_org']
