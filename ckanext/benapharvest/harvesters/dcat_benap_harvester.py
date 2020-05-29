@@ -32,7 +32,7 @@ class DcatBenapHarvester(DCATRDFHarvester):
         package_dict['tags'].append({'name': 'harvested'})
         if 'fluent_tags' not in package_dict:
             package_dict['fluent_tags'] = []
-        package_dict['fluent_tags'].append({'name': 'Cycle'})
+        package_dict['fluent_tags'].append('Cycle')
 
         # License
         package_dict['license_id'] = "CC0-1.0"
@@ -81,8 +81,14 @@ class DcatBenapHarvester(DCATRDFHarvester):
         # Contact
         package_dict['contact_name'] = 'contact point name'
 
-        # Other
-        package_dict['cont_res'] = 'Cont Res'
+        # Cont_res, value must be one of: Data set; Service
+        package_dict['cont_res'] = 'Data set'
+
+        # Agreement declaration
+        package_dict['agreement_declaration'] = ['N']
+
+        # remove extra's
+        del package_dict['extras']
 
         log.debug("final package_dict")
         log.debug(json.dumps(package_dict, indent=2))
