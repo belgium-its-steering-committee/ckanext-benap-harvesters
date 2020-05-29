@@ -29,21 +29,20 @@ class DcatBenapHarvester(DCATRDFHarvester):
         package_dict['remote_harvest'] = True
 
         # Add tags
-        package_dict['tags'].append({'name': 'harvested'})
         if 'fluent_tags' not in package_dict:
             package_dict['fluent_tags'] = []
         package_dict['fluent_tags'].append('Cycle')
 
         # License
-        package_dict['license_id'] = "CC0-1.0"
-        package_dict['contract_license'] = "nolinoco"
+        package_dict['license_id'] = "other-pd"
+        package_dict['contract_license'] = "lifree"
 
         # Geographic location
         package_dict['countries_covered'] = ['http://publications.europa.eu/resource/authority/country/BEL']
         package_dict['regions_covered'] = ['http://data.europa.eu/nuts/code/BE3']
 
         # Frequency
-        package_dict['frequency'] = 'http://publications.europa.eu/resource/authority/frequency/MONTHLY'
+        package_dict['frequency'] = 'http://publications.europa.eu/resource/authority/frequency/ANNUAL'
 
         # Language
         if 'Language' in extras_keys or 'language' in extras_keys:
