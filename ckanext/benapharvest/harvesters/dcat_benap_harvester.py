@@ -20,7 +20,7 @@ class DcatBenapHarvester(DCATRDFHarvester):
 
     def modify_package_dict(self, package_dict, dcat_dict, harvest_object):
         log.debug("---modify_package_dict---")
-        config = harvest_object.source.config
+        config = json.loads(harvest_object.source.config)
 
         extras_keys = [val['key'] for val in package_dict['extras']]
 
