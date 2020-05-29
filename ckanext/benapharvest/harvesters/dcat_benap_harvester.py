@@ -103,6 +103,9 @@ class DcatBenapHarvester(DCATRDFHarvester):
         # Agreement declaration
         package_dict['agreement_declaration'] = ['N']
 
+        # Quality assessment
+        package_dict['qual_ass'] = {'fr': '', 'de': '', 'nl': '', 'en': ''}
+
         # remove extra's
         del package_dict['extras']
 
@@ -142,6 +145,7 @@ class DcatBenapHarvester(DCATRDFHarvester):
         new_resource['acc_mod'] = 'Other'
         new_resource['acc_int'] = 'Other'
         new_resource['acc_con'] = 'Pull'
+        new_resource['acc_desc'] = {'fr': '', 'de': '', 'nl': '', 'en': ''}
         new_resource['resource_language'] = 'http://publications.europa.eu/resource/authority/language/NLD'
         new_resource['format'] = self._map_format(resource['format'])
         return new_resource
