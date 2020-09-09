@@ -119,8 +119,8 @@ class DcatBenapHarvester(DCATRDFHarvester):
         # remove extra's
         del package_dict['extras']
 
-        # log.debug("final package_dict")
-        # log.debug(json.dumps(package_dict, indent=2))
+        log.debug("final package_dict")
+        log.debug(json.dumps(package_dict, indent=2))
         return package_dict
 
     @staticmethod
