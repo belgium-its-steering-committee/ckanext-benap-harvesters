@@ -24,11 +24,7 @@ class DcatBenapHarvester(DCATRDFHarvester):
 
         extras_keys = [val['key'] for val in package_dict['extras']]
 
-        print("#" * 25)
-        print(package_dict)
-        # TODO check if type 'dataset'
-        print("#" * 25)
-
+        package_dict['type'] = 'harvested-dataset'
         package_dict['remote_harvest'] = True
 
         # Add tags
@@ -119,8 +115,8 @@ class DcatBenapHarvester(DCATRDFHarvester):
         # remove extra's
         del package_dict['extras']
 
-        log.debug("final package_dict")
-        log.debug(json.dumps(package_dict, indent=2))
+        #log.debug("final package_dict")
+        #log.debug(json.dumps(package_dict, indent=2))
         return package_dict
 
     @staticmethod
