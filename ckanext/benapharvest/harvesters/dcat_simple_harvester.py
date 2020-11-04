@@ -57,3 +57,13 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         package_dict['notes_translated'] = notes_translated
 
         return package_dict
+
+    @staticmethod
+    def _format_language(language):
+        if language == 'http://lexvo.org/id/iso639-3/nld':
+            return 'http://publications.europa.eu/resource/authority/language/NLD'
+        return input
+
+    @staticmethod
+    def _find_by_key(dict_list, key, default_value=''):
+        return next(iter([val['value'] for val in dict_list if val['key'] == key]), default_value)
