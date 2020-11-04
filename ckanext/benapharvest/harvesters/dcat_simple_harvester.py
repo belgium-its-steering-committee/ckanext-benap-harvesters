@@ -22,8 +22,22 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         log.debug("---modify_package_dict---")
         config = json.loads(harvest_object.source.config)
 
+        extras_keys = [val['key'] for val in package_dict['extras']]
+
         package_dict['type'] = 'harvest-simple-dataset'
         package_dict['remote_harvest'] = True
+
+        # Language
+        if 'Language' in extras_keys or 'language' in extras_keys:
+            new_languages = []
+            languages = json.loads(self._find_by_key(package_dict['extras'], 'language'))
+            if languages is '':
+                languages = json.loads(self._find_by_key(package_dict['extras'], 'Language'))
+            for language in languages:
+                new_languages.append(self._format_language(language))
+            package_dict['language'] = new_languages
+        else:
+            package_dict['language'] = ['http://publications.europa.eu/resource/authority/language/NLD']
 
         # Notes
         notes_translated = {
