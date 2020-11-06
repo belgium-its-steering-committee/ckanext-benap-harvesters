@@ -76,6 +76,13 @@ class DcatSimpleHarvester(DCATRDFHarvester):
             notes_translated['en'] = package_dict['notes']
         package_dict['notes_translated'] = notes_translated
 
+        #maintainer
+        if 'contact_uri' in extras_keys:
+            package_dict['maintainer_email'] = self._find_by_key(package_dict['extras'], 'contact_uri')
+        else:
+            package_dict['maintainer_email'] = "bart.depaepe@geosolutions.be"
+
+
         return package_dict
 
     @staticmethod
