@@ -100,6 +100,8 @@ class DcatSimpleHarvester(DCATRDFHarvester):
             #package_dict['maintainer_email'] = "bart.depaepe@geosolutions.be"
 
         #license
+        if(len(resources_licenses) > 0):
+            package_dict['license_id'] = resources_licenses[0]
 
         return package_dict
 
