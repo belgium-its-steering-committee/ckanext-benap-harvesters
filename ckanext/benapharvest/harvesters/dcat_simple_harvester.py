@@ -44,6 +44,12 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         log.debug(extras_keys)
         log.debug("---")
 
+        resources_licenses = [val['license'] for val in package_dict['resources']]
+        log.debug("---")
+        log.debug("---resources licenses---")
+        log.debug(resources_licenses)
+        log.debug("---")
+
         package_dict['type'] = 'harvest-simple-dataset'
         package_dict['remote_harvest'] = True
 
@@ -93,6 +99,7 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         #else:
             #package_dict['maintainer_email'] = "bart.depaepe@geosolutions.be"
 
+        #license
 
         return package_dict
 
