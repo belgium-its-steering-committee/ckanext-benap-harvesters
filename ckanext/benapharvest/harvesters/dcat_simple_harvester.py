@@ -76,8 +76,16 @@ class DcatSimpleHarvester(DCATRDFHarvester):
             notes_translated['en'] = package_dict['notes']
         package_dict['notes_translated'] = notes_translated
 
+        #Identifier of dataset
+        if 'identifier' in extras_keys:
+            package_dict['ID'] = self._find_by_key(package_dict['extras'], 'identifier')
+        else:
+            #ToDo uuid generator
+            package_dict['ID'] = "d2ab9657-0299-4e3c-9af0-650aa5572e21"
+
         #publisher
         package_dict['publisher_email'] = "bart.depaepe@geosolutions.be"
+
         #maintainer
         package_dict['maintainer_email'] = "bart.depaepe@geosolutions.be"
         #if 'contact_uri' in extras_keys:
