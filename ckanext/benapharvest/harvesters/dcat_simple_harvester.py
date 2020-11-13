@@ -21,25 +21,25 @@ class DcatSimpleHarvester(DCATRDFHarvester):
     def modify_package_dict(self, package_dict, dcat_dict, harvest_object):
         log.debug("---modify_package_dict---")
         log.debug("---")
-        log.debug("---object---")
-        log.debug(harvest_object)
-        log.debug("---")
-        log.debug("---")
-        log.debug("---package_dict---")
-        log.debug(package_dict)
-        log.debug("---")
-        log.debug("---")
-        log.debug("---dcat_dict---")
-        log.debug(dcat_dict)
-        log.debug("---")
+        #log.debug("---object---")
+        #log.debug(harvest_object)
+        #log.debug("---")
+        #log.debug("---")
+        #log.debug("---package_dict---")
+        #log.debug(package_dict)
+        #log.debug("---")
+        #log.debug("---")
+        #log.debug("---dcat_dict---")
+        #log.debug(dcat_dict)
+        #log.debug("---")
         config = json.loads(harvest_object.source.config)
-        log.debug("---")
-        log.debug("---config---")
-        log.debug(config)
-        log.debug("---")
+        #log.debug("---")
+        #log.debug("---config---")
+        #log.debug(config)
+        #log.debug("---")
 
         extras_keys = [val['key'] for val in package_dict['extras']]
-        log.debug("---")
+        #log.debug("---")
         log.debug("---extras keys---")
         log.debug(extras_keys)
         log.debug("---")
@@ -107,10 +107,16 @@ class DcatSimpleHarvester(DCATRDFHarvester):
 
         # Temporal start
         if 'modified' in extras_keys:
+            log.debug("---if---")
             package_dict['date_modified'] = self._find_by_key(package_dict['extras'], 'modified')
+            log.debug(self._find_by_key(package_dict['extras'], 'modified'))
+            log.debug("---")
         else:
+            log.debug("---else---")
             now = datetime.now()
             package_dict['date_modified'] = now.strftime("%Y-%m-%dT%H:%M:%S")
+            log.debug(now.strftime("%Y-%m-%dT%H:%M:%S"))
+            log.debug("---")
 
         return package_dict
 
