@@ -1,5 +1,6 @@
 import json
 import logging
+import uuid
 
 from ckanext.dcat.harvesters.rdf import DCATRDFHarvester
 
@@ -84,39 +85,36 @@ class DcatSimpleHarvester(DCATRDFHarvester):
 
         #Identifier of dataset
         if 'identifier' in extras_keys:
-            package_dict['ID'] = self._find_by_key(package_dict['extras'], 'identifier')
+            package_dict['id'] = self._find_by_key(package_dict['extras'], 'identifier')
         else:
             #ToDo uuid generator
-            package_dict['ID'] = "d2ab9657-0299-4e3c-9af0-650aa5572e21"
+            #make a random UUID
+            package_dict['id'] = uuid.uuid4()
 
         #publisher
-        if 'identifier' in extras_keys:
+        if 'publisher_uri' in extras_keys:
             package_dict['publisher_contact'] = self._find_by_key(package_dict['extras'], 'publisher_uri')
         else:
             package_dict['publisher_contact'] = "unknown"
 
         #maintainer
-        if 'identifier' in extras_keys:
+        if 'contact_uri' in extras_keys:
             package_dict['maintainer_contact'] = self._find_by_key(package_dict['extras'], 'contact_uri')
         else:
             package_dict['maintainer_contact'] = "unknown"
 
         #license
         if(len(resources_licenses) > 0):
-            package_dict['license_id'] = resources_licenses[0]
+            package_dict['license'] = resources_licenses[0]
 
         # Temporal start
         if 'modified' in extras_keys:
-            log.debug("---if---")
             package_dict['date_modified'] = self._find_by_key(package_dict['extras'], 'modified')
-            log.debug(self._find_by_key(package_dict['extras'], 'modified'))
-            log.debug("---")
+
         else:
-            log.debug("---else---")
             now = datetime.now()
             package_dict['date_modified'] = now.strftime("%Y-%m-%dT%H:%M:%S")
-            log.debug(now.strftime("%Y-%m-%dT%H:%M:%S"))
-            log.debug("---")
+
 
         return package_dict
 
