@@ -101,14 +101,16 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         else:
             package_dict['maintainer_contact'] = "unknown"
 
-        #if 'contact_uri' in extras_keys:
-            #package_dict['maintainer_email'] = self._find_by_key(package_dict['extras'], 'contact_uri')
-        #else:
-            #package_dict['maintainer_email'] = "bart.depaepe@geosolutions.be"
-
         #license
         if(len(resources_licenses) > 0):
             package_dict['license_id'] = resources_licenses[0]
+
+        # Temporal start
+        if 'modified' in extras_keys:
+            package_dict['date_modified'] = self._find_by_key(package_dict['extras'], 'modified')
+        else:
+            now = datetime.now()
+            package_dict['date_modified'] = now.strftime("%Y-%m-%dT%H:%M:%S")
 
         return package_dict
 
