@@ -105,7 +105,7 @@ class DcatSimpleHarvester(DCATRDFHarvester):
 
         #license
         if(len(resources_licenses) > 0):
-            package_dict['license'] = resources_licenses[0]
+            package_dict['license_id'] = resources_licenses[0]
 
         # Temporal start
         if 'modified' in extras_keys:
