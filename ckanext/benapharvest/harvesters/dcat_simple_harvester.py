@@ -90,10 +90,17 @@ class DcatSimpleHarvester(DCATRDFHarvester):
             package_dict['ID'] = "d2ab9657-0299-4e3c-9af0-650aa5572e21"
 
         #publisher
-        package_dict['publisher_email'] = "bart.depaepe@geosolutions.be"
+        if 'identifier' in extras_keys:
+            package_dict['publisher_contact'] = self._find_by_key(package_dict['extras'], 'publisher_uri')
+        else:
+            package_dict['publisher_contact'] = "unknown"
 
         #maintainer
-        package_dict['maintainer_email'] = "bart.depaepe@geosolutions.be"
+        if 'identifier' in extras_keys:
+            package_dict['maintainer_contact'] = self._find_by_key(package_dict['extras'], 'contact_uri')
+        else:
+            package_dict['maintainer_contact'] = "unknown"
+
         #if 'contact_uri' in extras_keys:
             #package_dict['maintainer_email'] = self._find_by_key(package_dict['extras'], 'contact_uri')
         #else:
