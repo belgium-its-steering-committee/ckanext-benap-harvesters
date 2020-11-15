@@ -85,10 +85,15 @@ class DcatSimpleHarvester(DCATRDFHarvester):
 
         #Identifier of dataset
         if 'identifier' in extras_keys:
+            log.debug("---if identifier---")
+            log.debug(self._find_by_key(package_dict['extras'], 'identifier'))
+            log.debug("---")
             package_dict['id'] = self._find_by_key(package_dict['extras'], 'identifier')
         else:
-            #ToDo uuid generator
             #make a random UUID
+            log.debug("---else identifier---")
+            log.debug(uuid.uuid4())
+            log.debug("---")
             package_dict['id'] = uuid.uuid4()
 
         #publisher
