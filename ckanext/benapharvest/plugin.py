@@ -3,8 +3,8 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
 
-class BenapHarvesterPlugin(plugins.SingletonPlugin):
-    plugins.implements(plugins.IConfigurer, inherit=True)
+class BenapHarvesterPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
+    plugins.implements(plugins.IConfigurer, plugins.IDatasetForm, inherit=True)
 
     # IConfigurer
 
