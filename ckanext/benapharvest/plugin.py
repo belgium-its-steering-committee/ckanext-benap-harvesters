@@ -4,7 +4,8 @@ import ckan.plugins.toolkit as toolkit
 
 
 class BenapHarvesterPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
-    plugins.implements(plugins.IConfigurer, plugins.IDatasetForm, inherit=True)
+    plugins.implements(plugins.IConfigurer, inherit=True)
+    plugins.implements(plugins.IDatasetForm)
 
     # IConfigurer
 
