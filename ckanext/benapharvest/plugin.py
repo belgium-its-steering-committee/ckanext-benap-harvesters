@@ -35,3 +35,12 @@ class BenapHarvesterPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         })
         return schema
 
+    def is_fallback(self):
+        return True
+
+    def package_types(self):
+        return []
+
+    def update_config(self, config):
+        toolkit.add_template_directory(config, 'templates')
+
