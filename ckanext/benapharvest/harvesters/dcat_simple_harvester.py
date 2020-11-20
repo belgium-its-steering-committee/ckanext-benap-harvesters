@@ -22,13 +22,13 @@ class DcatSimpleHarvester(DCATRDFHarvester):
     def modify_package_dict(self, package_dict, dcat_dict, harvest_object):
         log.debug("---modify_package_dict---")
         log.debug("---")
-        #log.debug("---object---")
-        #log.debug(harvest_object)
-        #log.debug("---")
-        #log.debug("---")
-        #log.debug("---package_dict---")
-        #log.debug(package_dict)
-        #log.debug("---")
+        log.debug("---object---")
+        log.debug(harvest_object)
+        log.debug("---")
+        log.debug("---")
+        log.debug("---package_dict---")
+        log.debug(package_dict)
+        log.debug("---")
         #log.debug("---")
         #log.debug("---dcat_dict---")
         #log.debug(dcat_dict)
@@ -88,13 +88,13 @@ class DcatSimpleHarvester(DCATRDFHarvester):
             log.debug("---if identifier---")
             log.debug(self._find_by_key(package_dict['extras'], 'identifier'))
             log.debug("---")
-            package_dict['id'] = self._find_by_key(package_dict['extras'], 'identifier')
+            #package_dict['id'] = self._find_by_key(package_dict['extras'], 'identifier')
         else:
             #make a random UUID
             log.debug("---else identifier---")
             log.debug(uuid.uuid4())
             log.debug("---")
-            package_dict['id'] = uuid.uuid4()
+            #package_dict['id'] = uuid.uuid4()
 
         #publisher
         if 'publisher_uri' in extras_keys:
