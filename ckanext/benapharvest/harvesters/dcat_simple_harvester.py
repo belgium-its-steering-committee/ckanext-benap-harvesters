@@ -1,6 +1,7 @@
 import json
 import logging
 import uuid
+import random
 
 from ckanext.dcat.harvesters.rdf import DCATRDFHarvester
 
@@ -88,7 +89,7 @@ class DcatSimpleHarvester(DCATRDFHarvester):
             log.debug("---if identifier---")
             log.debug(self._find_by_key(package_dict['extras'], 'identifier'))
             log.debug("---")
-            #package_dict['id'] = self._find_by_key(package_dict['extras'], 'identifier')
+            package_dict['id'] = random.randint(1, 1000)
         else:
             #make a random UUID
             log.debug("---else identifier---")
