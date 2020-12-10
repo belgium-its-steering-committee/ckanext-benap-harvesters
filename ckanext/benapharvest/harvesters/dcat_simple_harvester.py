@@ -52,6 +52,12 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         log.debug(resources_licenses)
         log.debug("---")
 
+        tags = [val['tag'] for val in package_dict['tags']]
+        log.debug("---")
+        log.debug("---tags---")
+        log.debug(tags)
+        log.debug("---")
+
         package_dict['type'] = 'harvest-simple-dataset'
         package_dict['remote_harvest'] = True
 
