@@ -89,13 +89,12 @@ class DcatSimpleHarvester(DCATRDFHarvester):
             log.debug("---if identifier---")
             log.debug(self._find_by_key(package_dict['extras'], 'identifier'))
             log.debug("---")
-            #package_dict['id'] = self._find_by_key(package_dict['extras'], 'identifier')
+            package_dict['custom_id'] = self._find_by_key(package_dict['extras'], 'identifier')
         else:
             #make a random UUID
             log.debug("---else identifier---")
-            log.debug(uuid.uuid4())
             log.debug("---")
-            #package_dict['id'] = uuid.uuid4()
+            package_dict['custom_id'] = "none"
 
         #publisher
         if 'publisher_uri' in extras_keys:
