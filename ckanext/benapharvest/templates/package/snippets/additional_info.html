@@ -74,7 +74,7 @@
             </td>
           </tr>
         {% endif %}
-<h4>{{ _('Extra') }}</h4>
+      <tr><td><h4>{{ _('Extra') }}</h4></td></tr>
       {% block extras scoped %}
         {% for extra in h.sorted_extras(pkg_dict.extras) %}
           {% set key, value = extra %}
