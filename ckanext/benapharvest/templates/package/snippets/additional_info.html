@@ -74,16 +74,16 @@
             </td>
           </tr>
         {% endif %}
-      <tr><td><h4>{{ _('Extra') }}</h4></td></tr>
-      {% block extras scoped %}
-        {% for extra in h.sorted_extras(pkg_dict.extras) %}
-          {% set key, value = extra %}
-          <tr rel="dc:relation" resource="_:extra{{ i }}">
-            <th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>
-            <td class="dataset-details" property="rdf:value">{{ value }}</td>
-          </tr>
-        {% endfor %}
-      {% endblock %}
+        <tr><td><h4>{{ _('Extra') }}</h4></td></tr>
+        {% block extras scoped %}
+          {% for extra in h.sorted_extras(pkg_dict.extras) %}
+            {% set key, value = extra %}
+              <tr rel="dc:relation" resource="_:extra{{ i }}">
+                <th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>
+                <td class="dataset-details" property="rdf:value">{{ value }}</td>
+              </tr>
+          {% endfor %}
+        {% endblock %}
 
       {% endblock %}
     </tbody>
