@@ -78,7 +78,8 @@
       {% block extras scoped %}
         {% for extra in h.sorted_extras(pkg_dict.extras) %}
           {% set key, value = extra %}
-          {% if key.lower()=="id" %}
+          {% print key %}
+          {% if key.lower()=='id' %}
             {% continue %}
           {% endif %}
           <tr rel="dc:relation" resource="_:extra{{ i }}">
