@@ -106,4 +106,5 @@ class DcatSimpleHarvester(DCATRDFHarvester):
             now = datetime.now()
             package_dict['date_modified'] = now.strftime("%Y-%m-%dT%H:%M:%S")
 
+        log.debug("---end custom processing--")
         return package_dict
