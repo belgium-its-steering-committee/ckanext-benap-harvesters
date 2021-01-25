@@ -80,25 +80,28 @@ class DcatSimpleHarvester(DCATRDFHarvester):
             package_dict['custom_id'] = "none"
 
         # publisher
+        log.debug("publisher")
         if 'publisher_uri' in extras_keys:
             package_dict['publisher_contact'] = find_by_key(package_dict['extras'], 'publisher_uri')
         else:
             package_dict['publisher_contact'] = "unknown"
 
         # maintainer
+        log.debug("maintainer")
         if 'contact_uri' in extras_keys:
             package_dict['maintainer_contact'] = find_by_key(package_dict['extras'], 'contact_uri')
         else:
             package_dict['maintainer_contact'] = "unknown"
 
         # license
+        log.debug("license")
         if len(resources_licenses) > 0:
             package_dict['license_id'] = resources_licenses[0]
 
         # Temporal start
+        log.debug("Temporal start")
         if 'modified' in extras_keys:
             package_dict['date_modified'] = find_by_key(package_dict['extras'], 'modified')
-
         else:
             now = datetime.now()
             package_dict['date_modified'] = now.strftime("%Y-%m-%dT%H:%M:%S")
