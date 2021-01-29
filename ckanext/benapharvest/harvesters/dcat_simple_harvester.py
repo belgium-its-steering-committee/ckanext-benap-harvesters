@@ -52,7 +52,8 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         log.debug(resources_licenses)
         log.debug("---")
 
-        tags = [val['tag'] for val in package_dict['tags']]
+        log.debug(package_dict['tags'])
+        tags = [val['tag'] for val in package_dict['tags'] if 'tag' in val]
         log.debug("---")
         log.debug("---tags---")
         log.debug(tags)
