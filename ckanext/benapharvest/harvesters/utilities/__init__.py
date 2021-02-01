@@ -39,13 +39,13 @@ def map_format(resource_format):
 
 
 def format_language(language):
-    if language in ('http://lexvo.org/id/iso639-3/nld', 'nl', 'nld'):
+    if language in ('http://lexvo.org/id/iso639-3/nld', 'nl', 'nld', 'http://id.loc.gov/vocabulary/iso639-1/nl'):
         return 'http://publications.europa.eu/resource/authority/language/NLD'
-    if language in ('http://lexvo.org/id/iso639-3/fra', 'fr', 'fra'):
+    if language in ('http://lexvo.org/id/iso639-3/fra', 'fr', 'fra', 'http://id.loc.gov/vocabulary/iso639-1/fr'):
         return 'http://publications.europa.eu/resource/authority/language/FRA'
-    if language in ('http://lexvo.org/id/iso639-3/eng', 'en', 'eng'):
+    if language in ('http://lexvo.org/id/iso639-3/eng', 'en', 'eng', 'http://id.loc.gov/vocabulary/iso639-1/en'):
         return 'http://publications.europa.eu/resource/authority/language/ENG'
-    if language in ('http://lexvo.org/id/iso639-3/deu', 'de', 'deu'):
+    if language in ('http://lexvo.org/id/iso639-3/deu', 'de', 'deu', 'http://id.loc.gov/vocabulary/iso639-1/de'):
         return 'http://publications.europa.eu/resource/authority/language/DEU'
     return input
 

@@ -69,6 +69,8 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         # Notes
         log.debug("---")
         log.debug("notes_translated")
+        log.debug(package_dict['notes'])
+        log.debug(package_dict['language'])
         log.debug(format_notes_translated(package_dict['notes'], package_dict['language']))
         log.debug("---")
         package_dict['notes_translated'] = format_notes_translated(package_dict['notes'], package_dict['language'])
@@ -113,4 +115,7 @@ class DcatSimpleHarvester(DCATRDFHarvester):
             package_dict['date_modified'] = now.strftime("%Y-%m-%dT%H:%M:%S")
 
         log.debug("---end custom processing--")
+        log.debug("="*35)
+        log.debug(package_dict)
+        log.debug("="*35)
         return package_dict
