@@ -4,7 +4,8 @@ from datetime import datetime
 
 from ckanext.dcat.harvesters.rdf import DCATRDFHarvester
 
-from ckanext.benapharvest.harvesters.utilities import find_by_key, format_language_list, format_notes_translated
+from ckanext.benapharvest.harvesters.utilities import find_by_key, format_language_list, format_notes_translated, \
+    tag_value_from_tag_object
 
 log = logging.getLogger(__name__)
 
@@ -53,7 +54,7 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         log.debug("---")
 
         log.debug(package_dict['tags'])
-        tags = [val['tag'] for val in package_dict['tags'] if 'tag' in val]
+        tags = [tag_value_from_tag_object(val) for val in package_dict['tags'] if 'tag' in val]
         log.debug("---")
         log.debug("---tags---")
         log.debug(tags)
@@ -66,6 +67,10 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         package_dict['language'] = format_language_list(extras_keys, package_dict['extras'])
 
         # Notes
+        log.debug("---")
+        log.debug("notes_translated")
+        log.debug(format_notes_translated(package_dict['notes'], package_dict['language']))
+        log.debug("---")
         package_dict['notes_translated'] = format_notes_translated(package_dict['notes'], package_dict['language'])
 
         # Identifier of dataset

@@ -78,3 +78,16 @@ def format_notes_translated(notes, language):
         notes_translated['de'] = notes
     if 'http://publications.europa.eu/resource/authority/language/ENG' in language:
         notes_translated['en'] = notes
+
+
+def tag_value_from_tag_object(tag_object):
+    """
+
+    :param tag_object: object that holds tags. ex: {'name': 'Car-sharing'}
+    :return: tag value, a string with the actual tag value
+    """
+    if 'tag' in tag_object:
+        return tag_object['tag']
+    elif 'name' in tag_object:
+        return tag_object['name']
+    return None
