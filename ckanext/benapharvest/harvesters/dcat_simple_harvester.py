@@ -54,7 +54,7 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         log.debug("---")
 
         log.debug(package_dict['tags'])
-        tags = [tag_value_from_tag_object(val) for val in package_dict['tags'] if 'tag' in val]
+        tags = [tag_value_from_tag_object(val) for val in package_dict['tags']]
         log.debug("---")
         log.debug("---tags---")
         log.debug(tags)

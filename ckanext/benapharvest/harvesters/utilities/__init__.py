@@ -78,6 +78,7 @@ def format_notes_translated(notes, language):
         notes_translated['de'] = notes
     if 'http://publications.europa.eu/resource/authority/language/ENG' in language:
         notes_translated['en'] = notes
+    return notes_translated
 
 
 def tag_value_from_tag_object(tag_object):
