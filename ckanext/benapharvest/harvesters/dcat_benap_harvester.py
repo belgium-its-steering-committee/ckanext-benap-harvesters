@@ -26,6 +26,8 @@ class DcatBenapHarvester(DCATRDFHarvester):
 
         package_dict['remote_harvest'] = True
 
+        package_dict['private'] = True
+
         # Add tags
         if 'fluent_tags' not in package_dict:
             package_dict['fluent_tags'] = []
