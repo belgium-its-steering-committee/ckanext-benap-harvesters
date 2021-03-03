@@ -58,6 +58,7 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         log.debug("---")
         log.debug("---tags---")
         log.debug(tags)
+        package_dict['tags'] = []
         log.debug("---")
 
         package_dict['type'] = 'harvest-simple-dataset'
