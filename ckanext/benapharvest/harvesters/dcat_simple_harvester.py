@@ -42,21 +42,12 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         # log.debug("---")
 
         extras_keys = [val['key'] for val in package_dict['extras']]
-        # log.debug("---")
-        log.debug("---extras keys---")
-        log.debug(extras_keys)
-        log.debug("---")
 
         resources_licenses = [val['license'] for val in package_dict['resources']]
-        log.debug("---")
-        log.debug("---resources licenses---")
-        log.debug(resources_licenses)
-        log.debug("---")
 
-        log.debug(package_dict['tags'])
         tags = [tag_value_from_tag_object(val) for val in package_dict['tags']]
-        log.debug("---")
         log.debug("---tags---")
+        log.debug(package_dict['tags'])
         log.debug(tags)
         log.debug("---")
 
@@ -67,12 +58,6 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         package_dict['language'] = format_language_list(extras_keys, package_dict['extras'])
 
         # Notes
-        log.debug("---")
-        log.debug("notes_translated")
-        log.debug(package_dict['notes'])
-        log.debug(package_dict['language'])
-        log.debug(format_notes_translated(package_dict['notes'], package_dict['language']))
-        log.debug("---")
         package_dict['notes_translated'] = format_notes_translated(package_dict['notes'], package_dict['language'])
 
         # Identifier of dataset
@@ -88,26 +73,22 @@ class DcatSimpleHarvester(DCATRDFHarvester):
             package_dict['custom_id'] = "none"
 
         # publisher
-        log.debug("publisher")
         if 'publisher_uri' in extras_keys:
             package_dict['publisher_contact'] = find_by_key(package_dict['extras'], 'publisher_uri')
         else:
             package_dict['publisher_contact'] = "unknown"
 
         # maintainer
-        log.debug("maintainer")
         if 'contact_uri' in extras_keys:
             package_dict['maintainer_contact'] = find_by_key(package_dict['extras'], 'contact_uri')
         else:
             package_dict['maintainer_contact'] = "unknown"
 
         # license
-        log.debug("license")
         if len(resources_licenses) > 0:
             package_dict['license_id'] = resources_licenses[0]
 
         # Temporal start
-        log.debug("Temporal start")
         if 'modified' in extras_keys:
             package_dict['date_modified'] = find_by_key(package_dict['extras'], 'modified')
         else:

@@ -75,8 +75,6 @@ setup(
     entry_points='''
         [ckan.plugins]
         benap_harvesters=ckanext.benapharvest.plugin:BenapHarvesterPlugin
-        benap_ckan_harvester=ckanext.benapharvest.harvesters.ckan_benap_harvester:CkanBenapHarvester
-        benap_dcat_harvester=ckanext.benapharvest.harvesters.dcat_benap_harvester:DcatBenapHarvester
         simple_dcat_harvester=ckanext.benapharvest.harvesters.dcat_simple_harvester:DcatSimpleHarvester
 
     '''
