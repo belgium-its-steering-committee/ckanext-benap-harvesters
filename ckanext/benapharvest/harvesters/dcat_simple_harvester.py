@@ -23,23 +23,6 @@ class DcatSimpleHarvester(DCATRDFHarvester):
     def modify_package_dict(self, package_dict, dcat_dict, harvest_object):
         log.debug("### simple_dcat ###")
         log.debug("---modify_package_dict---")
-        log.debug("---")
-        log.debug("---object---")
-        log.debug(harvest_object)
-        log.debug("---")
-        log.debug("---")
-        log.debug("---package_dict---")
-        log.debug(package_dict)
-        log.debug("---")
-        # log.debug("---")
-        # log.debug("---dcat_dict---")
-        # log.debug(dcat_dict)
-        # log.debug("---")
-        config = json.loads(harvest_object.source.config)
-        # log.debug("---")
-        # log.debug("---config---")
-        # log.debug(config)
-        # log.debug("---")
 
         extras_keys = [val['key'] for val in package_dict['extras']]
 
