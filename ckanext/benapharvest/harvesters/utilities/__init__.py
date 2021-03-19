@@ -101,5 +101,5 @@ def fluent_tag_object_from_tag_value(tag_value):
     :return: tag value, an object with the actual fluent_tag value
     """
     if tag_value:
-        return "{u'vocabulary_id': None, u'state': u'active', u'display_name': u'{0}', u'id': u'', u'name': u'{1}'}".format(tag_value,tag_value)
+        return {u'vocabulary_id': None, u'state': u'active', u'display_name': tag_value, u'id': u'', u'name': tag_value}
     return None
