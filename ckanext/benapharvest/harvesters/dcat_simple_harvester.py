@@ -35,7 +35,7 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         log.debug("---")
         fluent_tags = fluent_tags_from_tags("fr", tags)
         log.debug(fluent_tags)
-        package_dict['fluent_tags'] = fluent_tags
+        package_dict['fluent_tags'] = {}
         log.debug("---")
 
 
