@@ -33,11 +33,11 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         log.debug(package_dict['tags'])
         log.debug(tags)
         log.debug("---")
+        log.debug(package_dict)
+        log.debug("---")
         #fluent_tags = [fluent_tag_object_from_tag_value(val) for val in tags]
         #log.debug(fluent_tags)
         package_dict['fluent_tags'] = tags
-        log.debug("---")
-        log.debug(package_dict)
         log.debug("---")
 
 
