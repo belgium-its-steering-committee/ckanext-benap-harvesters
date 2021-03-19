@@ -92,3 +92,14 @@ def tag_value_from_tag_object(tag_object):
     elif 'name' in tag_object:
         return tag_object['name']
     return None
+
+
+def fluent_tag_object_from_tag_value(tag_value):
+    """
+
+    :param tag_value: value of a tag. ex: 'Car-sharing'
+    :return: tag value, an object with the actual fluent_tag value
+    """
+    if tag_value:
+        return "{u'vocabulary_id': None, u'state': u'active', u'display_name': u'{0}', u'id': u'', u'name': u'{1}'}".format(tag_value,tag_value)
+    return None

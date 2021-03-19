@@ -5,7 +5,7 @@ from datetime import datetime
 from ckanext.dcat.harvesters.rdf import DCATRDFHarvester
 
 from ckanext.benapharvest.harvesters.utilities import find_by_key, format_language_list, format_notes_translated, \
-    tag_value_from_tag_object
+    tag_value_from_tag_object, fluent_tag_object_from_tag_value
 
 log = logging.getLogger(__name__)
 
@@ -33,6 +33,12 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         log.debug(package_dict['tags'])
         log.debug(tags)
         log.debug("---")
+        log.debug(package_dict)
+        log.debug("---")
+        fluent_tags = [fluent_tag_object_from_tag_value(val) for val in tags]
+        log.debug(fluent_tags)
+        log.debug("---")
+
 
         package_dict['type'] = 'harvest-simple-dataset'
         package_dict['remote_harvest'] = True
