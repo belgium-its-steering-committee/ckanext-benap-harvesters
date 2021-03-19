@@ -94,12 +94,12 @@ def tag_value_from_tag_object(tag_object):
     return None
 
 
-def fluent_tag_object_from_tag_value(tag_value):
+def fluent_tags_from_tags(tag_language, tag_list):
     """
 
-    :param tag_value: value of a tag. ex: 'Car-sharing'
-    :return: tag value, an object with the actual fluent_tag value
+    :param tag_language: language of tags. ex: 'fr'
+    :param tag_list: list of tags. ex: [ u'Compteur', u'EcoCompteur']
+    :return: the actual fluent_tags value
     """
-    if tag_value:
-        return {u'vocabulary_id': None, u'state': u'active', u'display_name': tag_value, u'id': u'', u'name': tag_value}
-    return None
+    return {tag_language: tag_list}
+
