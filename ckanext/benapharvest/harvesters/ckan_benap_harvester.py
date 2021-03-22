@@ -42,6 +42,8 @@ class CkanBenapHarvester(CKANHarvester):
             log.debug('package_dict')
             log.debug(package_dict)
 
+            package_dict['private'] = True
+
             if package_dict.get('type') == 'harvest':
                 log.warn('Remote dataset is a harvest source, ignoring...')
                 return True
