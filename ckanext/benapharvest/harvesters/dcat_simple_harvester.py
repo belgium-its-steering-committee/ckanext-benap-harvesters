@@ -24,6 +24,8 @@ class DcatSimpleHarvester(DCATRDFHarvester):
         log.debug("### simple_dcat ###")
         log.debug("---modify_package_dict---")
 
+        package_dict['private'] = True
+
         extras_keys = [val['key'] for val in package_dict['extras']]
 
         resources_licenses = [val['license'] for val in package_dict['resources']]
