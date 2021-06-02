@@ -17,7 +17,7 @@ class DcatBenapHarvester(DCATRDFHarvester):
         return {
             'name': 'benap_dcat',
             'title': 'BENAP DCAT',
-            'description': 'Harvests remote DCAT metadata for use with transportdata.be',
+            'description': 'Harvests remote DCAT metadata for use with transportdata.be, using full metadata profile',
             'form_config_interface': 'Text'
         }
 
@@ -25,6 +25,16 @@ class DcatBenapHarvester(DCATRDFHarvester):
         log.debug("### benap_dcat ###")
         log.debug("---modify_package_dict---")
         config = json.loads(harvest_object.source.config)
+
+        log.debug("\n" * 5)
+        log.debug("###"*5)
+        log.debug(package_dict)
+        log.debug("###"*5)
+        log.debug(dcat_dict)
+        log.debug("###" * 5)
+        log.debug(harvest_object)
+        log.debug("###" * 5)
+        log.debug("\n" * 5)
 
         extras_keys = [val['key'] for val in package_dict['extras']]
 
