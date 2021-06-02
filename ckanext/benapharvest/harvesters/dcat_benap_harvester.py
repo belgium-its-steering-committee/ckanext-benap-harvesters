@@ -26,7 +26,7 @@ class DcatBenapHarvester(DCATRDFHarvester):
         log.debug(harvest_object)
         log.debug("###" * 5)
         log.debug("\n" * 5)
-        super(DcatBenapHarvester).import_stage(harvest_object)
+        super(DcatBenapHarvester, self).import_stage(harvest_object)
         log.debug("\n" * 5)
         log.debug(harvest_object)
         log.debug("###" * 5)
